@@ -14,7 +14,7 @@ import md.paynet.wifip2ptestapp.AppSingle;
 /**
  * Created by daniil on 05.11.16.
  */
-public class WiFiDirectBroadcastReceiver extends WakefulBroadcastReceiver {
+public class WiFiDirectBroadcastReceiver extends WakefulBroadcastReceiver{
 
     private final String TAG = "wifiBroadcastRec";
 

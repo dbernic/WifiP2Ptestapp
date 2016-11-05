@@ -1,7 +1,6 @@
 package md.paynet.wifip2ptestapp;
 
 import android.app.Application;
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -38,12 +37,8 @@ public class AppSingle extends Application {
         receiver = new WiFiDirectBroadcastReceiver();
         registerReceiver(receiver, intentFilter);
 
-
         wifiP2pManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         channel = wifiP2pManager.initialize(this, getMainLooper(), null);
-
-        startDiscover();
-
     }
 
     public void startDiscover(){

@@ -16,6 +16,7 @@ import java.util.List;
 import md.paynet.wifip2ptestapp.adapters.PeersAdapter;
 import md.paynet.wifip2ptestapp.util.ActivityHolder;
 import md.paynet.wifip2ptestapp.util.PrefHelper;
+import md.paynet.wifip2ptestapp.wifip2p.Utils;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
     private final String TAG = getClass().getSimpleName();
@@ -67,10 +68,18 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        switch (compoundButton.getId()) {
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
             case R.id.scanButton:
-
+                if (isChecked) {
+                    ((AppSingle)getApplication()).getWifiP2pManager().discoverPeers(
+                            ((AppSingle)getApplication()).getChannel(),
+                            Utils.getActionListener("DiscoverStart"));
+                } else {
+                    ((AppSingle) getApplicationContext()).getWifiP2pManager().stopPeerDiscovery(
+                            ((AppSingle) getApplicationContext()).getChannel(),
+                            Utils.getActionListener("DiscoverStop"));
+                }
                 break;
         }
     }
