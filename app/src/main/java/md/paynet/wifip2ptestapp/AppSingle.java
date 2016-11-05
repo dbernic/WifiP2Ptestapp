@@ -1,6 +1,7 @@
 package md.paynet.wifip2ptestapp;
 
 import android.app.Application;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.net.wifi.p2p.WifiP2pManager;
@@ -15,6 +16,7 @@ public class AppSingle extends Application {
     private WifiP2pManager wifiP2pManager;
     private WifiP2pManager.Channel channel;
     private IntentFilter intentFilter = new IntentFilter();
+    private MainActivity mainActivity;
 
     @Override
     public void onCreate() {
@@ -30,8 +32,6 @@ public class AppSingle extends Application {
         intentFilter
                 .addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 
-
-
     }
 
     public WifiP2pManager getWifiP2pManager() {
@@ -40,5 +40,13 @@ public class AppSingle extends Application {
 
     public WifiP2pManager.Channel getChannel() {
         return channel;
+    }
+
+    public MainActivity getMainActivity() {
+        return mainActivity;
+    }
+
+    public void setMainActivity(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
     }
 }
