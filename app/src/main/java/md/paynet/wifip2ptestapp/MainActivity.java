@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ((AppSingle)getApplication()).setMainActivity(this);
+
         prefHelper = new PrefHelper(this);
         if (prefHelper.getDeviceName().length() == 0) {
             showAlertDialog();
@@ -80,9 +80,4 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        ((AppSingle)getApplication()).setMainActivity(null);
-    }
 }

@@ -1,5 +1,6 @@
 package md.paynet.wifip2ptestapp.wifip2p;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.NetworkInfo;
@@ -13,7 +14,7 @@ import md.paynet.wifip2ptestapp.AppSingle;
 /**
  * Created by daniil on 05.11.16.
  */
-public class WiFiDirectBroadcastReceiver extends WakefulBroadcastReceiver {
+public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
 
     private final String TAG = "wifiBroadcastRec";
 
@@ -44,6 +45,7 @@ public class WiFiDirectBroadcastReceiver extends WakefulBroadcastReceiver {
             Log.i(TAG, "Device status -" + device.status);
 
         } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
+
             //TODO
         }
 
