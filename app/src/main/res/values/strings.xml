@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WifiP2P test app</string>
+    <string name="button_scan_state_on">Stop Scan</string>
+    <string name="button_scan_state_off">Start Scan</string>
 </resources>
