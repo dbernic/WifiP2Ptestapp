@@ -1,6 +1,7 @@
 package md.paynet.wifip2ptestapp;
 
 import android.content.DialogInterface;
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +11,10 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import md.paynet.wifip2ptestapp.adapters.Peer;
 import md.paynet.wifip2ptestapp.adapters.PeersAdapter;
+import md.paynet.wifip2ptestapp.util.ActivityHolder;
 import md.paynet.wifip2ptestapp.util.PrefHelper;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
@@ -58,17 +58,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         ((ToggleButton)findViewById(R.id.scanButton)).setOnCheckedChangeListener(this);
 
         peersRecycler = (RecyclerView) findViewById(R.id.peerRecyclerView);
-        peersAdapter = new PeersAdapter(tmpDummyListInit());
-        peersRecycler.setLayoutManager(new LinearLayoutManager(this));
-        peersRecycler.setAdapter(peersAdapter);
     }
 
-    private List<Peer> tmpDummyListInit() {
-        List<Peer> peerList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            peerList.add(new Peer("Device " + i));
-        }
-        return peerList;
+    public void updatePeerList(List<WifiP2pDevice> deviceList) {
+        peersAdapter = new PeersAdapter(deviceList);
+        peersRecycler.setLayoutManager(new LinearLayoutManager(this));
+        peersRecycler.setAdapter(peersAdapter);
     }
 
     @Override
@@ -83,6 +78,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     @Override
     protected void onPause() {
         super.onPause();
-        ((AppSingle)getApplication()).setMainActivity(null);
+        ActivityHolder.getInstance().setMainActivity(null);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ActivityHolder.getInstance().setMainActivity(this);
     }
 }

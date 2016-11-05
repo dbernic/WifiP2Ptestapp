@@ -1,5 +1,6 @@
 package md.paynet.wifip2ptestapp.adapters;
 
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,9 @@ import md.paynet.wifip2ptestapp.dialogs.PeerDialog;
  */
 
 public class PeersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    List<Peer> itemList;
+    List<WifiP2pDevice> itemList;
 
-    public PeersAdapter(List<Peer> itemList) {
+    public PeersAdapter(List<WifiP2pDevice> itemList) {
         this.itemList = itemList;
 
     }
@@ -32,7 +33,7 @@ public class PeersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         PeersHolder myHolder = (PeersHolder) holder;
-        myHolder.peerName.setText(itemList.get(position).getDeviceName());
+        myHolder.peerName.setText(itemList.get(position).deviceName);
     }
 
     @Override
@@ -55,7 +56,8 @@ public class PeersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 case R.id.peerName:
                     PeerDialog peerDialog = new PeerDialog(view.getContext());
                     peerDialog.show();
-                    peerDialog.setPeerDescription(itemList.get(getAdapterPosition()).getDeviceName() + "\n new line");
+                    peerDialog.setPeerDescription(itemList.get(getAdapterPosition()).deviceName +
+                            "\n" + itemList.get(getAdapterPosition()).deviceAddress);
             }
         }
     }
