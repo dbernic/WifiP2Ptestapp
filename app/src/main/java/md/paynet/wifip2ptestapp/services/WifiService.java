@@ -5,6 +5,8 @@ import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+
 import md.paynet.wifip2ptestapp.AppSingle;
 import md.paynet.wifip2ptestapp.wifip2p.Utils;
 
@@ -22,6 +24,7 @@ public class WifiService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Log.i(TAG, "Service started");
         ((AppSingle)getApplication()).getWifiP2pManager().discoverPeers(
                 ((AppSingle)getApplication()).getChannel(),
                         Utils.getActionListener("DiscoverStart"));
