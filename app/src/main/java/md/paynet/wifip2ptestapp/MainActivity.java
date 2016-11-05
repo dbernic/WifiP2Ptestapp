@@ -11,6 +11,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import md.paynet.wifip2ptestapp.adapters.PeersAdapter;
@@ -61,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         peersRecycler = (RecyclerView) findViewById(R.id.peerRecyclerView);
     }
 
-    public void updatePeerList(List<WifiP2pDevice> deviceList) {
-        peersAdapter = new PeersAdapter(deviceList);
+    public void updatePeerList(Collection<WifiP2pDevice> deviceList) {
+        peersAdapter = new PeersAdapter(new ArrayList<>(deviceList));
         peersRecycler.setLayoutManager(new LinearLayoutManager(this));
         peersRecycler.setAdapter(peersAdapter);
     }

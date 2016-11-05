@@ -10,6 +10,7 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
 import md.paynet.wifip2ptestapp.AppSingle;
+import md.paynet.wifip2ptestapp.util.ActivityHolder;
 
 /**
  * Created by daniil on 05.11.16.
@@ -45,8 +46,7 @@ public class WiFiDirectBroadcastReceiver extends WakefulBroadcastReceiver{
             Log.i(TAG, "Device status -" + device.status);
 
         } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
-
-            //TODO
+            new PeersManager().requestPeers((AppSingle) context);
         }
 
         /* else if (ALARM_PEER_DISCOVER.equals(action)){
