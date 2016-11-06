@@ -19,6 +19,7 @@ import md.paynet.wifip2ptestapp.adapters.PeersAdapter;
 import md.paynet.wifip2ptestapp.services.DiscoveryService;
 import md.paynet.wifip2ptestapp.util.ActivityHolder;
 import md.paynet.wifip2ptestapp.util.PrefHelper;
+import md.paynet.wifip2ptestapp.wifip2p.Utils;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
     private final String TAG = getClass().getSimpleName();
@@ -89,7 +90,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     startService(service);
 
                 } else {
-                    stopService(service);
+                    ((AppSingle) getApplicationContext()).getWifiP2pManager().stopPeerDiscovery(
+                            ((AppSingle) getApplicationContext()).getChannel(),
+                            Utils.getActionListener("DiscoverStop"));
                 }
                 break;
         }

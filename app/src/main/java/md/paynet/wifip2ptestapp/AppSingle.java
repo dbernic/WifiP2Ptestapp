@@ -10,7 +10,6 @@ import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.util.Log;
 
-import md.paynet.wifip2ptestapp.services.WifiService;
 import md.paynet.wifip2ptestapp.wifip2p.Utils;
 import md.paynet.wifip2ptestapp.wifip2p.WiFiDirectBroadcastReceiver;
 
@@ -43,11 +42,6 @@ public class AppSingle extends Application {
 
         wifiP2pManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         channel = wifiP2pManager.initialize(this, getMainLooper(), null);
-    }
-
-    public void startDiscover(){
-        startService(new Intent(this, WifiService.class));
-
     }
 
     public WifiP2pManager getWifiP2pManager() {
