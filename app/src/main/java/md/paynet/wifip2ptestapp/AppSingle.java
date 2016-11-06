@@ -5,9 +5,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.WpsInfo;
+import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.util.Log;
 
 import md.paynet.wifip2ptestapp.services.WifiService;
+import md.paynet.wifip2ptestapp.wifip2p.Utils;
 import md.paynet.wifip2ptestapp.wifip2p.WiFiDirectBroadcastReceiver;
 
 /**
@@ -52,6 +56,27 @@ public class AppSingle extends Application {
 
     public WifiP2pManager.Channel getChannel() {
         return channel;
+    }
+
+    public void initConnection(final String mac){
+        final WifiP2pConfig config = new WifiP2pConfig();
+        config.deviceAddress = mac;
+        config.wps.setup = WpsInfo.PBC;
+        Utils.writeLog("Try to connect");
+        wifiP2pManager.connect(channel, config, new WifiP2pManager.ActionListener() {
+            @Override
+            public void onSuccess() {
+                Log.i(TAG, "Connecting to "+mac);
+                Utils.writeLog("Connecting to "+mac);
+            }
+
+            @Override
+            public void onFailure(int reason) {
+                Log.i(TAG, "Connecting failed. Reason: "+reason);
+                Utils.writeLog("Connecting failed. Reason: "+reason);
+            }
+        });
+
     }
 
 }

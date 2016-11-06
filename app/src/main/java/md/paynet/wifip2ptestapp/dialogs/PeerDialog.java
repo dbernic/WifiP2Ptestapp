@@ -35,7 +35,7 @@ public class PeerDialog extends Dialog{
     }
 
     public void setPeerDescription(String description) {
-        peerDescription.setText(description);
+        peerDescription.setText(peerDescription.getText().toString()+"\n"+description);
     }
 
 }

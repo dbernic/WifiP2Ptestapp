@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     public void updatePeerList(Collection<WifiP2pDevice> deviceList) {
-        peersAdapter = new PeersAdapter(new ArrayList<>(deviceList));
+        peersAdapter = new PeersAdapter((AppSingle)getApplication(), new ArrayList<>(deviceList));
         peersRecycler.setLayoutManager(new LinearLayoutManager(this));
         peersRecycler.setAdapter(peersAdapter);
     }

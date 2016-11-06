@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import md.paynet.wifip2ptestapp.AppSingle;
 import md.paynet.wifip2ptestapp.R;
 import md.paynet.wifip2ptestapp.dialogs.PeerDialog;
 
@@ -19,8 +20,11 @@ import md.paynet.wifip2ptestapp.dialogs.PeerDialog;
 public class PeersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     List<WifiP2pDevice> itemList;
 
-    public PeersAdapter(List<WifiP2pDevice> itemList) {
+    AppSingle app;
+
+    public PeersAdapter(AppSingle app, List<WifiP2pDevice> itemList) {
         this.itemList = itemList;
+        this.app = app;
 
     }
 
@@ -54,10 +58,9 @@ public class PeersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.peerName:
+                    app.initConnection(itemList.get(getAdapterPosition()).deviceAddress);
                     PeerDialog peerDialog = new PeerDialog(view.getContext());
                     peerDialog.show();
-                    peerDialog.setPeerDescription(itemList.get(getAdapterPosition()).deviceName +
-                            "\n" + itemList.get(getAdapterPosition()).deviceAddress);
             }
         }
     }

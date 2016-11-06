@@ -3,6 +3,8 @@ package md.paynet.wifip2ptestapp.wifip2p;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.util.Log;
 
+import md.paynet.wifip2ptestapp.util.ActivityHolder;
+
 /**
  * Created by daniil on 05.11.16.
  */
@@ -16,6 +18,12 @@ public class Utils {
 
     public static WifiP2pManager.ActionListener getActionListener(String string){
         return new WiFiActionListener(string);
+    }
+
+    public static void writeLog(String string){
+        if (ActivityHolder.getInstance().getPeerDialog()!=null){
+            ActivityHolder.getInstance().getPeerDialog().setPeerDescription(string);
+        }
     }
 
 }

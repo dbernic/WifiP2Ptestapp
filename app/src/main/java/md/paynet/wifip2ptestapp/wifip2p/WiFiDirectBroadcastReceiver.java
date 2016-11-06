@@ -33,7 +33,7 @@ public class WiFiDirectBroadcastReceiver extends WakefulBroadcastReceiver{
                 Log.i(TAG, "--- Request connection info ---");
                 ((AppSingle) context).getWifiP2pManager().requestConnectionInfo(
                         ((AppSingle) context).getChannel(),
-                        new ConnectionManager()
+                        new ConnectionManager(context)
                 );
 
             } else {
