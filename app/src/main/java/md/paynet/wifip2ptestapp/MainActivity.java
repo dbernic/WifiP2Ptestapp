@@ -13,7 +13,6 @@ import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import md.paynet.wifip2ptestapp.adapters.PeersAdapter;
 import md.paynet.wifip2ptestapp.util.ActivityHolder;
@@ -62,6 +61,17 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         peersRecycler = (RecyclerView) findViewById(R.id.peerRecyclerView);
     }
+
+//    private List<WifiP2pDevice> fillList() {
+//        List<WifiP2pDevice> result = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            WifiP2pDevice de = new WifiP2pDevice();
+//            de.deviceAddress = "device" + i;
+//            de.deviceName = "name" + i;
+//            result.add(de);
+//        }
+//        return result;
+//    }
 
     public void updatePeerList(Collection<WifiP2pDevice> deviceList) {
         peersAdapter = new PeersAdapter((AppSingle)getApplication(), new ArrayList<>(deviceList));
