@@ -1,6 +1,7 @@
 package md.paynet.wifip2ptestapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -15,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import md.paynet.wifip2ptestapp.adapters.PeersAdapter;
+import md.paynet.wifip2ptestapp.services.DiscoveryService;
 import md.paynet.wifip2ptestapp.util.ActivityHolder;
 import md.paynet.wifip2ptestapp.util.PrefHelper;
-import md.paynet.wifip2ptestapp.wifip2p.Utils;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
     private final String TAG = getClass().getSimpleName();
@@ -83,14 +84,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
             case R.id.scanButton:
+                Intent service = new Intent(this, DiscoveryService.class);
                 if (isChecked) {
-                    ((AppSingle)getApplication()).getWifiP2pManager().discoverPeers(
-                            ((AppSingle)getApplication()).getChannel(),
-                            Utils.getActionListener("DiscoverStart"));
+                    startService(service);
+
                 } else {
-                    ((AppSingle) getApplicationContext()).getWifiP2pManager().stopPeerDiscovery(
-                            ((AppSingle) getApplicationContext()).getChannel(),
-                            Utils.getActionListener("DiscoverStop"));
+                    stopService(service);
                 }
                 break;
         }
