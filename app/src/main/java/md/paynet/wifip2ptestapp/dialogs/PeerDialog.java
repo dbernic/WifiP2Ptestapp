@@ -3,8 +3,10 @@ package md.paynet.wifip2ptestapp.dialogs;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
+import md.paynet.wifip2ptestapp.AppSingle;
 import md.paynet.wifip2ptestapp.R;
 import md.paynet.wifip2ptestapp.util.ActivityHolder;
 
@@ -26,6 +28,20 @@ public class PeerDialog extends Dialog{
         setContentView(R.layout.dialog_peer);
         peerDescription = (TextView) findViewById(R.id.peerDescription);
         ActivityHolder.getInstance().setPeerDialog(this);
+
+        findViewById(R.id.disconnectBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((AppSingle)getOwnerActivity().getApplication()).disconnect();
+            }
+        });
+
+        findViewById(R.id.closeBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 
     @Override

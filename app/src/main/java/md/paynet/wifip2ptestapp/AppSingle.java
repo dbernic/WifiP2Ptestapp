@@ -79,4 +79,20 @@ public class AppSingle extends Application {
 
     }
 
+    public void disconnect(){
+        wifiP2pManager.cancelConnect(channel, new WifiP2pManager.ActionListener() {
+            @Override
+            public void onSuccess() {
+                Log.i(TAG, "Disconnecting to ");
+                Utils.writeLog("Disconnecting to ");
+            }
+
+            @Override
+            public void onFailure(int reason) {
+                Log.i(TAG, "Disconnecting failed. Reason: "+reason);
+                Utils.writeLog("Disconnecting failed. Reason: "+reason);
+            }
+        });
+    }
+
 }
