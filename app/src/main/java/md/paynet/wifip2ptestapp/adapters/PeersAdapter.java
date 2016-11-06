@@ -59,7 +59,7 @@ public class PeersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             switch (view.getId()) {
                 case R.id.peerName:
                     app.initConnection(itemList.get(getAdapterPosition()).deviceAddress);
-                    PeerDialog peerDialog = new PeerDialog(view.getContext());
+                    PeerDialog peerDialog = new PeerDialog(app, view.getContext());
                     peerDialog.show();
             }
         }

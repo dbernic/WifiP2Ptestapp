@@ -17,9 +17,11 @@ import md.paynet.wifip2ptestapp.util.ActivityHolder;
 public class PeerDialog extends Dialog{
     private final String TAG = getClass().getSimpleName();
     private TextView peerDescription;
+    AppSingle app;
 
-    public PeerDialog(Context context) {
+    public PeerDialog(AppSingle app, Context context) {
         super(context);
+        this.app=app;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class PeerDialog extends Dialog{
         findViewById(R.id.disconnectBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AppSingle)getOwnerActivity().getApplication()).disconnect();
+                app.disconnect();
             }
         });
 
