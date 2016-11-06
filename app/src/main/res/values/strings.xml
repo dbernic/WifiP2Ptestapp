@@ -2,4 +2,6 @@
     <string name="app_name">WifiP2P test app</string>
     <string name="button_scan_state_on">Stop Scan</string>
     <string name="button_scan_state_off">Start Scan</string>
+    <string name="button_dialog_disconnect">Disconnect</string>
+    <string name="button_dialog_close">Close</string>
 </resources>
