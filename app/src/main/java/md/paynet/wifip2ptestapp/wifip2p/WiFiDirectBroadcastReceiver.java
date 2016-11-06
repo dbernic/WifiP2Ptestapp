@@ -31,6 +31,7 @@ public class WiFiDirectBroadcastReceiver extends WakefulBroadcastReceiver{
             if (networkInfo.isConnected()) {
 
                 Log.i(TAG, "--- Request connection info ---");
+                Utils.writeLog("--- Request connection info ---");
                 ((AppSingle) context).getWifiP2pManager().requestConnectionInfo(
                         ((AppSingle) context).getChannel(),
                         new ConnectionManager(context)
