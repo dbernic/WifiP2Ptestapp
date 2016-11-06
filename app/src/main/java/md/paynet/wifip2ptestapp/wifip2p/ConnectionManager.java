@@ -32,6 +32,14 @@ public class ConnectionManager implements WifiP2pManager.ConnectionInfoListener,
     public void onConnectionInfoAvailable(WifiP2pInfo info) {
 
         Log.i(TAG, "ConnectionInfo Available");
+
+        if (!info.groupFormed){
+            Log.i(TAG, "Group not formed");
+            Utils.writeLog("Group not formed");
+
+            return;
+        }
+
         Thread thread;
 
         if (info.isGroupOwner) {
